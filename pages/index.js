@@ -31,15 +31,6 @@ class Dashboard extends React.Component {
     clearInterval(this.interval)
   }
 
-  renderPeers() {
-    return this.props.peers.length ? (
-      <div>
-        <h1>Peers - { this.props.peers.length }</h1>
-        <Map peers={this.props.peers} />
-      </div>
-    ) : null
-  }
-
   renderTransactionsChart() {
     return (
       <div>
@@ -65,7 +56,7 @@ class Dashboard extends React.Component {
       <div>
         <Block title="Latest Block" block={this.props.latestBlock} showDifficulty />
         { this.renderCurrentGasPrice() }
-        { this.renderPeers() }
+        <Map peers={this.props.peers} />
         <AreaGraph title="Transactions Activity" data={this.props.activity} />
       </div>
     )
