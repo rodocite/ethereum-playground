@@ -1,0 +1,33 @@
+{
+  "name": "blockchain-explorer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "next build",
+    "dev": "node server.js",
+    "blockchain": "geth --rpcapi net,admin,eth,web3,debug --rpc --rpccorsdomain '*' --ws --wsorigins '*'  --verbosity 1 console"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "escape-json-node": "^2.0.0",
+    "express": "^4.16.3",
+    "google-map-react": "^1.0.0",
+    "iplocation": "^5.0.0",
+    "jayson": "^2.0.6",
+    "lodash": "^4.17.10",
+    "next": "^6.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "recharts": "^1.0.0-beta.10",
+    "redux": "^4.0.0",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^3.2.6",
+    "twilio": "^3.16.0",
+    "web3": "^1.0.0-beta.34"
+  }
+}
