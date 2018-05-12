@@ -14,6 +14,19 @@ app.prepare()
   .then(() => {
     const server = express()
 
+    server.get('/address', (req, res) => {
+      const { address } = req.query
+
+      rpc.request('trace_filter', [{
+        "fromBlock": "0x1", // 3068100
+        "toBlock": "0x4aab2f", // 3068200
+        "toAddress": ["0xae832fa0495d895af70b1db7d0313a564435d73a"]
+      }], (err, response) => {
+        console.log(response)
+      })
+      res.end('OK')
+    })
+
     server.get('/message', (req, res) => {
       twilio.messages
         .create({
@@ -30,9 +43,10 @@ app.prepare()
     server.get('/peers.json', (req, res) => {
       console.log('iplocation API')
       res.setHeader('Content-Type', 'application/json')
-      rpc.request('admin_peers', [], (err, response) => {
-        const ipAddresses = _.map(response.result, async ({ network }) => iplocation(network.remoteAddress.split(':')[0]))
+      rpc.request('parity_netPeers', [], (err, response) => {
+        const ipAddresses = _.map(response.result.peers, async ({ network }) => iplocation(network.remoteAddress.split(':')[0]))
         Promise.all(ipAddresses).then((addresses) => res.end(JSON.stringify(addresses)))
+          .catch(() => res.end(JSON.stringify([])))
       })
     })
 
