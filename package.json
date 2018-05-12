@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "next build",
-    "dev": "node server.js",
-    "blockchain": "geth --rpcapi net,admin,eth,web3,debug --rpc --rpccorsdomain '*' --ws --wsorigins '*'  --verbosity 1 console"
+    "dev": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +17,7 @@
     "iplocation": "^5.0.0",
     "jayson": "^2.0.6",
     "lodash": "^4.17.10",
-    "next": "^6.0.0",
+    "next": "^6.0.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
