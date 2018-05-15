@@ -24,7 +24,7 @@ export default class MyDocument extends Document {
               box-sizing: border-box;
             }
             *, *:before, *:after {
-              font-family: Open Sans;
+              font-family: -apple-system, BlinkMacSystemFont, sans-serif;
               box-sizing: inherit;
             }
           `}</style>
