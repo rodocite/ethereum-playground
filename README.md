@@ -10,7 +10,7 @@ A block explorer with visualization features that help inspect transactions. The
 
 ### Transactions from Address
 Showcases query performance/limitations of Web3 versus directly using a JSON-RPC trace query. Needs a synced Parity node with the `--tracing on` flag.
-[Screenshot](https://github.com/rodocite/ethereum-playground/blob/master/queries.png)
+![](https://github.com/rodocite/ethereum-playground/blob/master/queries.png)
 
 ### Blockchain Art
 Uses data from transactions to draw a morphing voronoi chart.
