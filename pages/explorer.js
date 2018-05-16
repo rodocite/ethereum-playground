@@ -26,8 +26,6 @@ const Controls = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
-
-
 `
 
 const Button = styled.button`
@@ -168,13 +166,13 @@ class Explorer extends React.Component {
     )
   }
 
-  switchBlock = _.debounce((blockNumber) => {
+  switchBlock = (blockNumber) => {
     this.setState({
       transactions: [],
       stagedTransactions: []
     })
     this.getBlock(blockNumber)
-  }, 100, { leading: true, trailing: false })
+  }
 
   render() {
     const { number, hash } = this.state.blockData
@@ -190,7 +188,6 @@ class Explorer extends React.Component {
           />
           <Button onClick={() => this.switchBlock(number + 1)}>{"▶"}</Button>
         </Controls>
-        {/* <Button onClick={() => this.switchBlock(this.state.block)}>Find Block</Button> */}
         <p># of Transactions: { this.state.transactions.length }</p>
         <TransactionsContainer>
           <Orbs>
