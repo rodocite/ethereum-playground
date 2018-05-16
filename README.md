@@ -14,7 +14,7 @@ Showcases query performance/limitations of Web3 versus directly using a JSON-RPC
 
 ### Blockchain Art
 Uses data from transactions to draw a morphing voronoi chart.
-![](https://github.com/rodocite/ethereum-playground/blob/master/art.png)
+![](https://github.com/rodocite/ethereum-playground/blob/master/art.gif)
 
 ### Hacker Watcher
 Uses Web3's `.subscribe()` functionality to listen to pending transactions and match a watched address. Uses Twilio to warn the user of "suspicious activity" on their account. This is a minimal implementation and in a production app, you'd probably listen to pending transactions, recent transactions, and do a back-search on posted transactions to ensure that the service did not miss any activity.
