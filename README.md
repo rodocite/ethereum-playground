@@ -2,6 +2,7 @@
 # Ethereum Playground
 I set this project up to explore Ethereum. There are several toy projects within this repo that play with data queried from the blockchain.
 
+# Projects
 ### Dashboard
 A realtime dashboard that queries and updates data from the blockchain. Uses Redux.
 ![](https://github.com/rodocite/ethereum-playground/blob/master/dashboard.png)
