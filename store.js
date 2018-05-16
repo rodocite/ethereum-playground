@@ -82,7 +82,7 @@ const resolvePeers = async () => {
   return peers.json()
 }
 
-const getPeers = async (response) => {
+const getPeers = async () => {
   const peers = await resolvePeers()
   return { type: actionTypes.PEERS, peers }
 }
