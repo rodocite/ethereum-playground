@@ -5,7 +5,7 @@ This repo explores Ethereum. There are several toy projects within this repo tha
 # Projects
 
 ### Explorer
-A block explorer with visualization features that help inspect transactions.
+A block explorer with visualization features that help inspect transactions. The larger the orb, the larger the transaction. You can stage transactions on the right side of the page for closer inspection by clicking on the orb.
 ![](https://github.com/rodocite/ethereum-playground/blob/master/explorer.png)
 
 ### Transactions from Address
