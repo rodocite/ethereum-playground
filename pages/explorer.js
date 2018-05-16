@@ -27,21 +27,26 @@ const Controls = styled.div`
   display: flex;
   justify-content: center;
 
-  button {
-    border: none;
-    color: #999999;
-    cursor: pointer;
-    font-size: 18px;
-    margin: 5px;
 
-    :focus {
-      outline: none;
-    }
+`
 
-    :hover {
-      color: tomato;
-    }
+const Button = styled.button`
+  border: none;
+  color: #999999;
+  cursor: pointer;
+  font-size: 18px;
+
+  :focus {
+    outline: none;
   }
+
+  :hover {
+    color: tomato;
+  }
+`
+
+const SearchContainer = styled.div`
+  display: flex;
 `
 
 const Staging = styled.div`
@@ -60,6 +65,7 @@ const Orbs = styled.div`
   height: 100%;
   justify-content: flex-start;
   padding-right: 15px;
+  transition: all 0.5s;
 `
 
 const Details = styled.div`
@@ -94,9 +100,26 @@ const Details = styled.div`
   }
 `
 
+const Input = styled.input`
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.3s;
+  border-bottom: 1px solid white;
+
+  :hover {
+    border-bottom: 1px solid black;
+  }
+
+  :focus {
+    outline: none;
+    border-bottom: 1px solid black;
+  }
+`
+
 class Explorer extends React.Component {
   state = {
-    block: null,
+    block: '',
     blockData: {},
     transactions: [],
     stagedTransactions: []
@@ -159,11 +182,16 @@ class Explorer extends React.Component {
     return (
       <Container>
         <Controls>
-          <button onClick={() => this.switchBlock(number - 1)}>{"◀"}</button>
-          { number }
-          <button onClick={() => this.switchBlock(number + 1)}>{"▶"}</button>
+          <Button onClick={() => this.switchBlock(number - 1)}>{"◀"}</Button>
+          <Input
+            value={this.state.block}
+            onChange={(e) => this.setState({ block: e.target.value }) }
+            onKeyPress={(e) => e.key === 'Enter' ? this.switchBlock(this.state.block) : null}
+          />
+          <Button onClick={() => this.switchBlock(number + 1)}>{"▶"}</Button>
         </Controls>
-        <div># of Transactions: { this.state.transactions.length }</div>
+        {/* <Button onClick={() => this.switchBlock(this.state.block)}>Find Block</Button> */}
+        <p># of Transactions: { this.state.transactions.length }</p>
         <TransactionsContainer>
           <Orbs>
             { _.map(this.state.transactions, (hash) => (<Transaction key={hash} hash={hash} stage={this.stageTransaction} />)) }
