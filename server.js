@@ -7,8 +7,8 @@ const twilio = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWI
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
-var jayson = require('jayson');
-var rpc = jayson.client.http('http://localhost:8545')
+const jayson = require('jayson')
+const rpc = jayson.client.http('http://localhost:8545')
 
 app.prepare()
   .then(() => {
@@ -18,13 +18,13 @@ app.prepare()
       const { address } = req.query
 
       rpc.request('trace_filter', [{
-        "fromBlock": "0x1", // 3068100
-        "toBlock": "0x4aab2f", // 3068200
-        "toAddress": ["0xae832fa0495d895af70b1db7d0313a564435d73a"]
+        "fromBlock": "0x24F8D8",
+        "toBlock": "0x24FCC0",
+        "toAddress": [address]
       }], (err, response) => {
-        console.log(response)
+        res.setHeader('Content-Type', 'application/json')
+        res.end(JSON.stringify({data: response.result}))
       })
-      res.end('OK')
     })
 
     server.get('/message', (req, res) => {
