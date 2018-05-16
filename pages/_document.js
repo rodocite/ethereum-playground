@@ -18,7 +18,7 @@ export default class MyDocument extends Document {
           {this.props.styleTags}
           <style >{`
             body {
-              margin: 20px;
+              margin: 40px;
             }
             html {
               box-sizing: border-box;

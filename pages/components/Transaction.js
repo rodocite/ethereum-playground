@@ -7,28 +7,41 @@ const Container = styled.div`
   position: relative;
 `
 
+const LoadingCell = styled.div`
+  background: #999999;
+  height: 5px;
+  margin: 1px;
+  width: 5px;
+`
+
 const Cell = styled.div`
-  display: flex;
-  justify-content: center;
   align-items: center;
-  background: ${props => props.toggled ? 'darksalmon' : 'white'};
-  border ${props => Math.min(Math.ceil(props.value) / 3, 100) || 1}px solid black;
-  margin: 5px;
-  width: ${props => Math.ceil(props.value) * 20}px;
-  height ${props => Math.ceil(props.value)* 20}px;
-  max-width: 300px;
-  max-height: 300px;
-  transition: all 0.3s;
-  border-radius: 50%;
   animation: 0.3s fadein;
+  background: ${props => props.toggled ? '#7ae996' : 'white'};
+  border ${props => Math.min(Math.ceil(props.value) / 3, 100) || 1}px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
   font-weight: 100;
+  height ${props => Math.ceil(props.value)* 20}px;
+  justify-content: center;
+  margin: 5px 1px;
+  max-height: 300px;
+  max-width: 300px;
+  transition: all 0.2s;
+  width: ${props => Math.ceil(props.value) * 20}px;
 
   :after {
     content: ${props => props.value};
   }
 
   :hover {
+    background: #967ae9;
+  }
+
+  :active {
     background: darksalmon;
+    transform: scale(1.03);
   }
 
   @keyframes fadein {
@@ -44,41 +57,10 @@ const Cell = styled.div`
   }
 `
 
-const Details = styled.div`
-  position: absolute;
-  font-size: 12px;
-  padding: 0px 10px 10px 10px;
-  background: white;
-  display: inline-block;
-  border: 2px solid;
-  z-index: 2;
-  border-radius: 5px;
-  animation-duration: 0.2s;
-  animation-name: scaleIn;
-
-  h4 {
-    padding-bottom: 10px;
-    border-bottom: 1px solid black;
-  }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0);
-    }
-
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-`
-
 class Transaction extends React.Component {
   state = {
     data: null,
-    details: false,
-    toggleDetails: false
+    details: false
   }
 
   componentDidMount() {
@@ -88,33 +70,35 @@ class Transaction extends React.Component {
       })
   }
 
-  renderDetails() {
-    const { hash, to, from, value: wei } = this.state.data
-    const value = Web3.utils.fromWei(wei, 'ether')
-
-    return (
-      <Details>
-        <h4>{hash}</h4>
-        <p>To: {to}</p>
-        <p>From: {from}</p>
-        <p>ETH: {value}</p>
-      </Details>
-    )
+  toggleSelection = () => {
+    this.setState({
+      details: !this.state.details,
+    }, () => {
+      if (this.state.details) {
+        this.props.stage(this.state.data, true)
+      } else {
+        this.props.stage(this.state.data, false)
+      }
+    })
   }
 
-  render() {
-    if (!this.state.data) return null
+  renderCell() {
     const { value: wei } = this.state.data
     const value = Web3.utils.fromWei(wei, 'ether')
 
     return (
+      <Cell
+        value={value}
+        toggled={this.state.details}
+        onClick={this.toggleSelection}
+      >{ value >= 1 ? Math.floor(value) : null }</Cell>
+    )
+  }
+
+  render() {
+    return (
       <Container>
-        <Cell
-          value={value}
-          toggled={this.state.toggleDetails}
-          onClick={() => this.setState({ toggleDetails: !this.state.toggleDetails })}
-        >{ value >= 1 ? Math.floor(value) : null }</Cell>
-        { this.state.toggleDetails && this.renderDetails() }
+        { this.state.data ? this.renderCell() : <LoadingCell /> }
       </Container>
     )
   }
