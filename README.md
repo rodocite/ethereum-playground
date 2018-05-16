@@ -1,6 +1,6 @@
 
 # Ethereum Playground
-I set this project up to explore Ethereum. There are several toy projects within this repo that play with data queried from the blockchain.
+This repo explores Ethereum. There are several toy projects within this repo that play with data queried from the blockchain.
 
 # Projects
 
@@ -13,7 +13,7 @@ Uses Web3's `.subscribe()` functionality on the Infura websockets node to listen
 
 ### Transactions from Address
 Showcases query performance/limitations of Web3 versus directly using a JSON-RPC trace query. Needs a synced Parity node with the `--tracing on` flag.
-![](https://github.com/rodocite/ethereum-playground/blob/master/queries.png)
+[Screenshot](https://github.com/rodocite/ethereum-playground/blob/master/queries.png)
 
 ### Blockchain Art
 Uses data from transactions to draw a morphing voronoi chart.
@@ -21,7 +21,7 @@ Uses data from transactions to draw a morphing voronoi chart.
 
 ### Dashboard
 A realtime dashboard that queries and updates data from the blockchain. Uses Redux.
-![](https://github.com/rodocite/ethereum-playground/blob/master/dashboard.png)
+[Screenshot](https://github.com/rodocite/ethereum-playground/blob/master/dashboard.png)
 
 ## Starting the Project
 Start your blockchain node w/ rpc flags. The project uses default ports. The project requires a `.env` file.
