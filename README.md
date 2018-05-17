@@ -2,7 +2,7 @@
 # Ethereum Playground
 This repo explores Ethereum. There are several toy projects within this repo that play with data queried from the blockchain.
 
-[![VIDEO](http://img.youtube.com/vi/4IMw5-YihZ4/0.jpg)](https://youtu.be/4IMw5-YihZ4)
+[[VIDEO](Watch a quick demo)](https://youtu.be/4IMw5-YihZ4)
 
 # Projects
 
